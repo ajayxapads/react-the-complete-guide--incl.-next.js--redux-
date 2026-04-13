@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>React Rendering Flow Notes</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #0f172a;
+      color: #e2e8f0;
+      padding: 20px;
+      line-height: 1.7;
+    }
+
+    h1, h2 {
+      color: #38bdf8;
+    }
+
+    section {
+      background: #1e293b;
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 25px;
+    }
+
+    code {
+      display: block;
+      background: #020617;
+      padding: 12px;
+      border-radius: 6px;
+      margin-top: 10px;
+      color: #22c55e;
+    }
+
+    .important {
+      color: #facc15;
+      font-weight: bold;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<h1>🚀 React Rendering Flow (Easy Notes)</h1>
+
+<section>
+  <h2>📌 1. What you see in browser source code</h2>
+  <p>
+    When you inspect a React website source:
+  </p>
+
+  <ul>
+    <li>❌ You do NOT see UI (header, text, images)</li>
+    <li>✅ You only see HTML + JavaScript file</li>
+  </ul>
+
+  <p class="important">
+    React builds UI using JavaScript dynamically.
+  </p>
+
+  <p>
+    The actual UI is created after JavaScript runs. :contentReference[oaicite:0]{index=0}
+  </p>
+</section>
+
+<section>
+  <h2>📌 2. Role of index.html</h2>
+  <p>
+    This is the main HTML file sent to users.
+  </p>
+
+  <code>
+&lt;div id="root"&gt;&lt;/div&gt;
+  </code>
+
+  <p class="important">
+    React injects the entire app inside this div.
+  </p>
+</section>
+
+<section>
+  <h2>📌 3. Entry Point (index.jsx)</h2>
+  <p>
+    This is the first file that runs in React.
+  </p>
+
+  <ul>
+    <li>Imports App component</li>
+    <li>Starts the React app</li>
+  </ul>
+
+  <p class="important">
+    It is called the "entry point" of the app.
+  </p>
+</section>
+
+<section>
+  <h2>📌 4. Import & Export</h2>
+  <code>
+import App from "./App";
+  </code>
+
+  <p>
+    👉 This is normal JavaScript, not React-specific.
+  </p>
+</section>
+
+<section>
+  <h2>📌 5. How React renders UI</h2>
+
+  <code>
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(&lt;App /&gt;);
+  </code>
+
+  <ul>
+    <li>Select root div</li>
+    <li>Create React root</li>
+    <li>Render App component</li>
+  </ul>
+</section>
+
+<section>
+  <h2>📌 6. What createRoot does</h2>
+  <p>
+    It connects React with the real DOM.
+  </p>
+
+  <ul>
+    <li>Takes existing HTML element</li>
+    <li>Makes it React root container</li>
+  </ul>
+</section>
+
+<section>
+  <h2>📌 7. What render() does</h2>
+  <p>
+    It displays the React component on screen.
+  </p>
+
+  <ul>
+    <li>Renders App component</li>
+    <li>Also renders all nested components</li>
+  </ul>
+</section>
+
+<section>
+  <h2>📌 8. Component Tree</h2>
+  <p>
+    React creates a hierarchy of components.
+  </p>
+
+  <ul>
+    <li>App (parent)</li>
+    <li>Header (child)</li>
+    <li>Other nested components</li>
+  </ul>
+
+  <p class="important">
+    This structure is called Component Tree.
+  </p>
+</section>
+
+<section>
+  <h2>📌 9. Important Concept (Very Asked)</h2>
+  <p>
+    Custom components DO NOT appear in DOM.
+  </p>
+
+  <ul>
+    <li>Only real HTML elements appear</li>
+    <li>React converts components → HTML</li>
+  </ul>
+</section>
+
+<section>
+  <h2>📌 10. Uppercase vs Lowercase</h2>
+
+  <ul>
+    <li><span class="important">Lowercase → HTML elements</span> (div, header)</li>
+    <li><span class="important">Uppercase → Custom components</span> (App, Header)</li>
+  </ul>
+
+  <p>
+    👉 This helps React differentiate between them.
+  </p>
+</section>
+
+<section>
+  <h2>📌 11. How React Works Internally</h2>
+
+  <ul>
+    <li>Custom components → functions</li>
+    <li>React executes them</li>
+    <li>Gets JSX output</li>
+    <li>Converts to real HTML</li>
+  </ul>
+
+  <p class="important">
+    React builds final DOM from all components combined.
+  </p>
+</section>
+
+<section>
+  <h2>📌 12. Final Understanding</h2>
+
+  <ul>
+    <li>React does NOT directly show components</li>
+    <li>It converts them into HTML</li>
+    <li>Then injects into root div</li>
+  </ul>
+
+  <p class="important">
+    Components = Developer convenience  
+    DOM = Final output
+  </p>
+</section>
+
+</body>
+</html>
